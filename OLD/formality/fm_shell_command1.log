@@ -1,0 +1,65 @@
+#@ # 
+#@ # Running fm_shell Version H-2013.03-SP2 for amd64 -- May 28, 2013
+#@ # Date:   Tue Jun  4 21:07:42 2024
+#@ # Run by: ni_sunda@grace.encs.concordia.ca
+#@ 
+
+source /CMC/tools/synopsys/fm_vH-2013.03-SP2/admin/setup/.synopsys_fm.setup
+#@ # -- Starting source /CMC/tools/synopsys/fm_vH-2013.03-SP2/admin/setup/.synopsys_fm.setup
+
+#@ #
+#@ # .synopsys_fm.setup: Initialization File for Formality
+#@ #
+#@ 
+#@ 
+#@ #
+#@ # Enable stack trace output on fatal.  Not available for all architectures.
+#@ #
+#@ if { $sh_arch == "sparc" || $sh_arch == "sparcOS5" ||      $sh_arch == "hp700" || $sh_arch == "hpux10" } {
+#@   set_unix_variable SYNOPSYS_TRACE ""
+#@ }
+#@ 
+#@ #
+#@ # Variable settings
+#@ #
+#@ set sh_new_variable_message true
+#@ 
+#@ #
+#@ # Synopsys strongly recommends that you uncomment the following command
+#@ # in order to set sh_command_abbrev_mode to the value "Command-Line-Only".
+#@ # Command abbreviation is intended as an interactive convenience.  Using
+#@ # abbreviations in scripts can cause commands to fail in subsequent releases.
+#@ # 
+#@ #set sh_command_abbrev_mode "Command-Line-Only"
+#@ 
+#@ #
+#@ # Some useful aliases
+#@ #
+#@ alias list_commands		help
+#@ 
+#@ #
+#@ # The alias of q to quit is commented out.  Remove the comment 
+#@ # character if you want this alias.  Some users find that having 
+#@ # this particular alias causes problems when mixed with page-mode
+#@ # for reports - an accidental repeated 'q' not only cancels the
+#@ # output but exits the tool.
+#@ #
+#@ #alias q quit
+#@ # -- End source /CMC/tools/synopsys/fm_vH-2013.03-SP2/admin/setup/.synopsys_fm.setup
+
+set synopsys_auto_setup true 
+read_vhdl -container r -libname WORK -93 { /nfs/home/n/ni_sunda/COEN_6551/formality/dds_synthesizer.vhd /nfs/home/n/ni_sunda/COEN_6551/formality/sine_lut_10_x_10.vhd } 
+read_db { /nfs/home/n/ni_sunda/COEN_6551/formality/class.db } 
+set_top r:/WORK/dds_synthesizer 
+set_reference r:/WORK/dds_synthesizer 
+read_ddc -container i { /nfs/home/n/ni_sunda/COEN_6551/formality/ultra_synthesized.ddc } 
+set_top i:/WORK/dds_synthesizer 
+match 
+verify 
+analyze_points -failing 
+verify 
+set_implementation i:/CLASS/AN2 
+set_implementation i:/WORK/dds_synthesizer 
+set_reference r:/WORK/dds_synthesizer 
+set_implementation i:/WORK/dds_synthesizer 
+remove_container i 
