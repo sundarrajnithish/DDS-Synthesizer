@@ -52,8 +52,6 @@ Where:
 ### Lookup Tables (LUTs)
 Precomputed sine values are stored in LUTs to optimize performance.
 
-![LUTs](images/formality_truth_table.png) 
-
 ### System Architecture
 The DDS block diagram outlines its key components, excluding clock and reset signals for clarity.
 
