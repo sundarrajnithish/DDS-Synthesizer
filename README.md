@@ -5,25 +5,6 @@ This repository documents the formal verification process for a **Direct Digital
 
 ![Block](images/BlockDiagram.png)  
 
-## Table of Contents
-1. [Introduction](#introduction)
-2. [System Behavior and Function](#system-behavior-and-function)
-   - Frequency Synthesis
-   - Phase and Amplitude Modulation
-   - Lookup Tables (LUTs)
-   - System Architecture
-3. [RTL Synthesis](#rtl-synthesis)
-4. [Equivalence Checking](#equivalence-checking)
-   - Using Synopsys Formality
-   - Using Cadence Conformal
-5. [Verification Process](#verification-process)
-   - Verification Methodology
-   - Tool Comparisons
-6. [Results and Analysis](#results-and-analysis)
-7. [Conclusion](#conclusion)
-
----
-
 ## Introduction
 The purpose of this project is to verify the accuracy and functionality of a **Direct Digital Synthesizer (DDS)** using **formal verification techniques**. The DDS is widely used in signal processing and communication systems, necessitating high reliability. To ensure correctness, the design is analyzed using **Synopsys Formality** and **Cadence Conformal**.
 
